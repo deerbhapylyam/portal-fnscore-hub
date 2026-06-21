@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蜂鸟电竞 · 信息索引与资料整理</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'PingFang SC', Roboto, system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #fce9d4 0%, #f8d9c0 30%, #f5c9a8 70%, #f0bc94 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+      color: #3d2b1c;
+    }
+
+    .page-card {
+      max-width: 760px;
+      width: 100%;
+      background: rgba(255, 251, 245, 0.92);
+      backdrop-filter: blur(4px);
+      border-radius: 36px;
+      padding: 2.4rem 2.2rem;
+      box-shadow: 0 20px 40px -12px rgba(130, 70, 30, 0.25),
+                  0 8px 20px rgba(180, 100, 40, 0.08);
+      transition: box-shadow 0.2s ease;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 550;
+      letter-spacing: -0.01em;
+      color: #5e2f1a;
+      margin-bottom: 0.4rem;
+      border-left: 5px solid #c9895e;
+      padding-left: 1.1rem;
+    }
+
+    .subhead {
+      font-size: 1rem;
+      color: #7a5a44;
+      margin-bottom: 2rem;
+      padding-left: 1.6rem;
+      opacity: 0.8;
+      font-weight: 400;
+    }
+
+    .summary {
+      background: #f8ede2;
+      padding: 1.4rem 1.6rem;
+      border-radius: 24px;
+      margin-bottom: 2rem;
+      border: 1px solid #ecdccc;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .summary p {
+      font-size: 1.05rem;
+    }
+
+    .section-title {
+      font-weight: 530;
+      font-size: 1.2rem;
+      color: #4b2e1d;
+      margin: 1.8rem 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title:before {
+      content: "—";
+      color: #c9895e;
+      font-weight: 300;
+      margin-right: 4px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 1.4rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .feature-item {
+      background: #fcf6ef;
+      padding: 0.9rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      border: 1px solid #e7d6c6;
+      transition: background 0.15s;
+    }
+
+    .feature-item strong {
+      display: block;
+      font-weight: 530;
+      color: #5e351e;
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
+    }
+
+    .usage-note {
+      background: #f3e4d7;
+      border-radius: 24px;
+      padding: 1.2rem 1.6rem;
+      margin: 1.8rem 0;
+      border-left: 4px solid #b57c5c;
+    }
+
+    .faq-mini {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin: 1.6rem 0 1.4rem;
+    }
+
+    .faq-q {
+      background: #fcf6ef;
+      padding: 0.8rem 1.2rem;
+      border-radius: 18px;
+      border: 1px solid #e5d4c2;
+    }
+
+    .faq-q strong {
+      display: block;
+      color: #5e3720;
+      font-weight: 520;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-q p {
+      font-size: 0.92rem;
+      color: #4d3629;
+    }
+
+    .gentle-link {
+      margin: 1.8rem 0 0.8rem;
+      padding: 1rem 0;
+      border-top: 1px dashed #dac2ae;
+      text-align: center;
+      font-size: 1.02rem;
+    }
+
+    .gentle-link a {
+      color: #7b4a2a;
+      background: #f4e1d2;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 520;
+      transition: background 0.2s, box-shadow 0.15s;
+      box-shadow: 0 2px 6px rgba(140, 80, 30, 0.06);
+      border: 1px solid #dabca8;
+      display: inline-block;
+    }
+
+    .gentle-link a:hover {
+      background: #e8ceb9;
+      box-shadow: 0 4px 12px rgba(140, 70, 20, 0.12);
+      border-color: #be9b82;
+    }
+
+    .disclaimer {
+      font-size: 0.8rem;
+      color: #7f6653;
+      margin-top: 2rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid #e7d6c6;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+      .page-card {
+        padding: 1.8rem 1.2rem;
+      }
+      h1 {
+        font-size: 1.7rem;
+        padding-left: 0.8rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+      .subhead {
+        padding-left: 1rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      body {
+        padding: 1rem 0.5rem;
+      }
+      .page-card {
+        border-radius: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-card">
+    <h1>蜂鸟电竞 · 信息索引</h1>
+    <div class="subhead">从资料整理到赛事数据 · 一份清晰的产品说明</div>
+
+    <div class="summary">
+      <p><strong>摘要</strong> — 蜂鸟电竞是一个专注于电子竞技数据整合与内容索引的平台。它更像一份持续更新的资料集：汇集赛事信息、队伍档案、选手数据与对战记录，让关注电竞的玩家、爱好者或研究者在同一个界面上快速检索所需信息。本站不提供投注、博彩或任何形式的赌博服务，仅做客观的数据展示与信息整理。</p>
+    </div>
+
+    <div class="section-title">核心特点</div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <strong>结构化数据</strong>
+        覆盖主流赛事的赛程、比分、历史交锋记录，以清晰的列表和面板呈现，减少信息噪音。
+      </div>
+      <div class="feature-item">
+        <strong>选手与队伍索引</strong>
+        提供常用标签与检索维度，可快速定位特定队伍、选手的近期比赛及基础数据。
+      </div>
+      <div class="feature-item">
+        <strong>持续更新</strong>
+        数据源保持定期同步，比赛日前后集中更新，力求信息时效性。
+      </div>
+      <div class="feature-item">
+        <strong>简洁界面</strong>
+        以卡片式和列表式布局为主，减少不必要的视觉干扰，专注信息本身。
+      </div>
+    </div>
+
+    <div class="section-title">使用建议</div>
+    <div class="usage-note">
+      <p>🔎 日常查阅赛事、对比赛果或整理观赛笔记时，可以将<a href="https://portal-fnscore.com" style="color:#7b4a2a; text-decoration:underline;">蜂鸟电竞</a>设为辅助资料页。建议先通过顶部导航或搜索框缩小范围，再浏览具体赛程与数据。移动端适配良好，碎片时间也能快速扫一眼关键场次。</p>
+      <p style="margin-top: 0.6rem;">📌 若需要研究特定队伍或选手的近期状态，可以结合数据面板自行比对，平台本身不预设结论，所有数字均源自公开赛事记录整理。</p>
+    </div>
+
+    <div class="section-title">常见疑问 · 简要</div>
+    <div class="faq-mini">
+      <div class="faq-q">
+        <strong>蜂鸟电竞的数据来源是什么？</strong>
+        <p>主要基于公开赛事官方记录及可靠的电竞数据接口，经人工校验与自动化清洗后呈现，力求减少误差。</p>
+      </div>
+      <div class="faq-q">
+        <strong>是否需要注册才能浏览？</strong>
+        <p>大部分内容可直接浏览，部分高阶筛选或自定义收藏功能可能需要注册账号以保存个人偏好。</p>
+      </div>
+      <div class="faq-q">
+        <strong>平台是否涉及博彩或投注？</strong>
+        <p>完全不涉及。蜂鸟电竞只做数据索引与展示，没有任何博彩、赌盘或导流至博彩网站的链接。页面内不会出现赔率、下注等元素。</p>
+      </div>
+    </div>
+
+    <div class="gentle-link">
+      <span>前往资料站 → </span>
+      <a href="https://portal-fnscore.com">蜂鸟电竞</a>
+    </div>
+
+    <div class="disclaimer">
+      页面内容仅作产品说明与信息索引参考。使用中请保持理性，合理安排时间。
+    </div>
+  </div>
+</body>
+</html>
